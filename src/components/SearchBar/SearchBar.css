@@ -1,0 +1,16 @@
+.Search {
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+.input{
+    text-align: center;
+ }
+
+.inputRounded .MuiOutlinedInput-root{
+    border-radius: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: whitesmoke;
+    margin-top: -9%;
+ }

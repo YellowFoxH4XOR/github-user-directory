@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./components/SearchBar/SearchBar";
+import SearchBar from './components/SearchBar/SearchBar';
+import Profile from './components/Profile/Profile';
+class App extends React.Component{
+  state = {
+    user: ''
+  };
+  updateUser = (data) => {
+    this.setState({user: data});
+    console.log(this.state.user);
+  };
+  
+  render() {
+    return (
+        <div>
+          <div className="Header">
+            <img className="Header-svg" src="git.svg" alt="logo"/>
+            <h2>Github User Directory</h2>
+            <SearchBar updateUser={this.updateUser}/>
+          </div>
+          <Profile val={this.state.user}/>
+        </div>
+    );
+  }
 }
 
 export default App;
