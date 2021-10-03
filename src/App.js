@@ -5,11 +5,12 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Profile from './components/Profile/Profile';
 class App extends React.Component{
   state = {
-    user: ''
+    user: '',
+    hit: NaN
   };
   updateUser = (data) => {
     this.setState({user: data});
-    console.log(this.state.user);
+    this.setState({hit: ''});
   };
   
   render() {
@@ -20,7 +21,7 @@ class App extends React.Component{
             <h2>Github User Directory</h2>
             <SearchBar updateUser={this.updateUser}/>
           </div>
-          <Profile val={this.state.user}/>
+          <Profile val={this.state.user} hit={this.state.hit}/>
         </div>
     );
   }

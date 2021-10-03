@@ -18,6 +18,7 @@ class Profile extends React.Component {
         const profile = this.props.val;
         let state = false;
         let url = '';
+        let val = this.props.hit;
         let dateCreated = '';
         if(profile.name) {
             state = true;
@@ -45,7 +46,6 @@ class Profile extends React.Component {
                                     component="img"
                                     height="300"
                                     image={profile.avatar_url}
-                                    alt="Paella dish"
                                 />
                                 <CardContent>
                                     <Typography variant="body2" color="text.secondary">
@@ -63,13 +63,16 @@ class Profile extends React.Component {
                         else {
                             let vertical = 'bottom';
                             let horizontal = 'right';
-                            return (
-                                <Snackbar open={true} anchorOrigin={{ vertical, horizontal }} key={vertical + horizontal}>
-                                    <Alert severity="error">
-                                        User not found!!
-                                    </Alert>
-                                </Snackbar>
-                            );
+                            if(!isNaN(val))
+                            {
+                                return (
+                                    <Snackbar open={true} anchorOrigin={{ vertical, horizontal }} key={vertical + horizontal}>
+                                        <Alert severity="error">
+                                            User not found!!
+                                        </Alert>
+                                    </Snackbar>
+                                );
+                            }
                         }
                     })()
                 }
