@@ -8,10 +8,15 @@ class SearchBar extends React.Component {
     state = { userName: '' };
 	handleSubmit = async (event) => {
   	    event.preventDefault();
-        const resp = await axios.get(`https://api.github.com/users/${this.state.userName}`);
-        console.log(resp.data);
-        this.props.updateUser(resp.data);
-        this.setState({ userName: '' });
+        try {
+            const resp = await axios.get(`https://api.github.com/users/${this.state.userName}`);
+            console.log(resp.data);
+            this.props.updateUser(resp.data);
+            this.setState({ userName: '' });
+        } catch {
+            console.log("Error");
+            this.props.updateUser(NaN);
+        }
     };
 
     render()

@@ -3,6 +3,7 @@ import './Profile.css'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
+import Alert from '@mui/material/Alert';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
@@ -10,19 +11,20 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import GitHubIcon from '@mui/icons-material/GitHub';
-
-
+import Snackbar from '@mui/material/Snackbar';
 
 class Profile extends React.Component {
     render() {
         const profile = this.props.val;
         let state = false;
         let url = '';
-        const dateCreated = new Date(profile.created_at).toDateString();
+        let dateCreated = '';
         if(profile.name) {
             state = true;
             url = "https://github.com/" + profile.login;
+            dateCreated = new Date(profile.created_at).toDateString();
         }
+        
         return(
             <div className="Card">
                 { ( () => {
@@ -56,6 +58,17 @@ class Profile extends React.Component {
                                     </IconButton>
                                 </CardActions>
                                 </Card>
+                            );
+                        }
+                        else {
+                            let vertical = 'bottom';
+                            let horizontal = 'right';
+                            return (
+                                <Snackbar open={true} anchorOrigin={{ vertical, horizontal }} key={vertical + horizontal}>
+                                    <Alert severity="error">
+                                        User not found!!
+                                    </Alert>
+                                </Snackbar>
                             );
                         }
                     })()
